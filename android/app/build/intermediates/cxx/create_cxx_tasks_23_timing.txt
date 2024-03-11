@@ -1,0 +1,78 @@
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 14ms
+    create-ARMEABI_V7A-model 16ms
+    [gap of 19ms]
+  create-initial-cxx-model completed in 55ms
+  [gap of 10ms]
+create_cxx_tasks completed in 68ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 14ms
+    create-ARMEABI_V7A-model 19ms
+    [gap of 30ms]
+  create-initial-cxx-model completed in 70ms
+  [gap of 14ms]
+create_cxx_tasks completed in 87ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 23ms
+    create-variant-model 16ms
+    create-ARMEABI_V7A-model 25ms
+    [gap of 27ms]
+  create-initial-cxx-model completed in 95ms
+  [gap of 14ms]
+create_cxx_tasks completed in 114ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 23ms
+    create-ARMEABI_V7A-model 21ms
+    [gap of 26ms]
+  create-initial-cxx-model completed in 80ms
+  [gap of 21ms]
+create_cxx_tasks completed in 110ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 23ms
+    create-variant-model 27ms
+    create-ARMEABI_V7A-model 54ms
+    [gap of 37ms]
+    create-X86_64-model 12ms
+  create-initial-cxx-model completed in 160ms
+  [gap of 22ms]
+create_cxx_tasks completed in 190ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 18ms
+    [gap of 10ms]
+    create-ARMEABI_V7A-model 24ms
+    [gap of 40ms]
+  create-initial-cxx-model completed in 93ms
+  [gap of 17ms]
+create_cxx_tasks completed in 114ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model
+    create-module-model 14ms
+    create-ARMEABI_V7A-model 16ms
+    [gap of 19ms]
+  create-initial-cxx-model completed in 56ms
+create_cxx_tasks completed in 68ms
+
+# C/C++ build system timings
+create_cxx_tasks
+  create-initial-cxx-model 13ms
+create_cxx_tasks completed in 14ms
+

@@ -1,0 +1,5 @@
+/Users/apple/Library/Android/sdk/cmake/3.22.1/bin/ninja \
+  -C \
+  /Users/apple/Desktop/ChessBoard/android/app/.cxx/Debug/4649j1h1/armeabi-v7a \
+  appmodules \
+  react_codegen_rngesturehandler_codegen

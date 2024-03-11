@@ -1,0 +1,181 @@
+diff --git a/node_modules/react-native-chessboard/lib/typescript/context/props-context/index.d.ts b/node_modules/react-native-chessboard/lib/typescript/context/props-context/index.d.ts
+index 42e9bea..b999a60 100644
+--- a/node_modules/react-native-chessboard/lib/typescript/context/props-context/index.d.ts
++++ b/node_modules/react-native-chessboard/lib/typescript/context/props-context/index.d.ts
+@@ -50,6 +50,7 @@ declare type ChessboardProps = {
+      * It's a particularly useful callback if you want to execute an instruction after a move.
+      */
+     onMove?: (info: ChessMoveInfo) => void;
++    onMoveSqaure?: (from,to) => void;
+     /**
+      * Useful if you want to customise the default colors used in the chessboard.
+      */
+@@ -68,4 +69,4 @@ declare type ChessboardContextType = ChessboardProps & Required<Pick<ChessboardP
+ declare const ChessboardPropsContext: React.Context<ChessboardContextType>;
+ declare const ChessboardPropsContextProvider: React.FC<ChessboardProps>;
+ export { ChessboardPropsContextProvider, ChessboardPropsContext };
+-export type { ChessboardProps };
++export type { ChessboardProps,ChessboardColorsType };
+diff --git a/node_modules/react-native-chessboard/lib/typescript/index.d.ts b/node_modules/react-native-chessboard/lib/typescript/index.d.ts
+index fdfbfa5..a1c5ff5 100644
+--- a/node_modules/react-native-chessboard/lib/typescript/index.d.ts
++++ b/node_modules/react-native-chessboard/lib/typescript/index.d.ts
+@@ -1,6 +1,7 @@
+ import React from 'react';
+ import type { ChessboardRef } from './context/board-refs-context';
+-import { ChessboardProps } from './context/props-context';
++import { ChessboardProps,ChessboardColorsType } from './context/props-context';
+ declare const ChessboardContainer: React.MemoExoticComponent<React.ForwardRefExoticComponent<ChessboardProps & React.RefAttributes<ChessboardRef>>>;
+ export type { ChessboardRef };
++export type { ChessboardColorsType };
+ export default ChessboardContainer;
+diff --git a/node_modules/react-native-chessboard/src/components/piece/index.tsx b/node_modules/react-native-chessboard/src/components/piece/index.tsx
+index bbbd539..e60f1c7 100644
+--- a/node_modules/react-native-chessboard/src/components/piece/index.tsx
++++ b/node_modules/react-native-chessboard/src/components/piece/index.tsx
+@@ -23,6 +23,7 @@ type PieceProps = {
+   startPosition: Vector;
+   square: Square;
+   size: number;
++  onMoveData: Function;
+ };
+ 
+ export type ChessPieceRef = {
+@@ -30,9 +31,12 @@ export type ChessPieceRef = {
+   enable: (activate: boolean) => void;
+ };
+ 
++
+ const Piece = React.memo(
+   React.forwardRef<ChessPieceRef, PieceProps>(
+-    ({ id, startPosition, square, size }, ref) => {
++    ({ id, startPosition, square, size ,onMoveData}, ref) => {
++      // console.log("************",square);
++     
+       const chess = useChessEngine();
+       const refs = usePieceRefs();
+       const pieceEnabled = useSharedValue(true);
+@@ -62,6 +66,8 @@ const Piece = React.memo(
+ 
+       const validateMove = useCallback(
+         (from: Square, to: Square) => {
++          
++          onMoveData(from,to)
+           return chess
+             .moves({ verbose: true })
+             .find((m) => m.from === from && m.to === to);
+diff --git a/node_modules/react-native-chessboard/src/components/pieces.tsx b/node_modules/react-native-chessboard/src/components/pieces.tsx
+index 5410d88..1860bf7 100644
+--- a/node_modules/react-native-chessboard/src/components/pieces.tsx
++++ b/node_modules/react-native-chessboard/src/components/pieces.tsx
+@@ -7,7 +7,11 @@ import { usePieceRefs } from '../context/board-refs-context/hooks';
+ import Piece from './piece';
+ import { useReversePiecePosition } from '../notation';
+ 
+-const Pieces = React.memo(() => {
++type PiecesProps = {
++ 
++  onMoveSquare: Function;
++};
++const Pieces : React.FC<PiecesProps> = React.memo(({ onMoveSquare }) =>{
+   const board = useBoard();
+   const refs = usePieceRefs();
+   const { pieceSize } = useChessboardProps();
+@@ -31,6 +35,10 @@ const Pieces = React.memo(() => {
+                 startPosition={{ x, y }}
+                 square={square}
+                 size={pieceSize}
++                onMoveData={(from,to) => {
++                  onMoveSquare(from,to)
++                 
++                }}
+               />
+             );
+           }
+diff --git a/node_modules/react-native-chessboard/src/context/props-context/index.tsx b/node_modules/react-native-chessboard/src/context/props-context/index.tsx
+index 448aa9c..fc7a50b 100644
+--- a/node_modules/react-native-chessboard/src/context/props-context/index.tsx
++++ b/node_modules/react-native-chessboard/src/context/props-context/index.tsx
+@@ -62,6 +62,7 @@ type ChessboardProps = {
+    * Useful if you want to customise the default durations used in the chessboard (in milliseconds).
+    */
+   durations?: ChessboardDurationsType;
++  onMoveSqaure?: (from,to) => void;
+ };
+ 
+ type ChessboardContextType = ChessboardProps &
+diff --git a/node_modules/react-native-chessboard/src/index.tsx b/node_modules/react-native-chessboard/src/index.tsx
+index 7266de4..728f873 100644
+--- a/node_modules/react-native-chessboard/src/index.tsx
++++ b/node_modules/react-native-chessboard/src/index.tsx
+@@ -19,14 +19,20 @@ const styles = StyleSheet.create({
+     aspectRatio: 1,
+   },
+ });
++type ChessboardPieceProps = {
+ 
+-const Chessboard: React.FC = React.memo(() => {
++  onMoveSquareData: Function;
++};
++const Chessboard: React.FC<ChessboardPieceProps> = React.memo(({ onMoveSquareData }) => {
+   const { boardSize } = useChessboardProps();
+ 
+   return (
+     <View style={[styles.container, { width: boardSize }]}>
+       <Background />
+-      <Pieces />
++      <Pieces onMoveSquare={(from, to) => {
++        onMoveSquareData(from, to);
++       
++      }} />
+       <HighlightedSquares />
+       <SuggestedDots />
+     </View>
+@@ -36,6 +42,7 @@ const Chessboard: React.FC = React.memo(() => {
+ const ChessboardContainerComponent = React.forwardRef<
+   ChessboardRef,
+   ChessboardProps
++
+ >((props, ref) => {
+   const chessboardRef = useRef<ChessboardRef>(null);
+ 
+@@ -54,8 +61,11 @@ const ChessboardContainerComponent = React.forwardRef<
+ 
+   return (
+     <ChessboardPropsContextProvider {...props}>
+-      <ChessboardContextProvider ref={chessboardRef} fen={props.fen}>
+-        <Chessboard />
++      <ChessboardContextProvider ref={chessboardRef} fen={props.fen} >
++        <Chessboard onMoveSquareData={(from, to) => {
++
++          props.onMoveSqaure?.(from, to);
++        }} />
+       </ChessboardContextProvider>
+     </ChessboardPropsContextProvider>
+   );
+@@ -64,4 +74,5 @@ const ChessboardContainerComponent = React.forwardRef<
+ const ChessboardContainer = React.memo(ChessboardContainerComponent);
+ 
+ export type { ChessboardRef };
++
+ export default ChessboardContainer;
+diff --git a/node_modules/react-native-chessboard/src/notation.ts b/node_modules/react-native-chessboard/src/notation.ts
+index 1484f29..f7134e4 100644
+--- a/node_modules/react-native-chessboard/src/notation.ts
++++ b/node_modules/react-native-chessboard/src/notation.ts
+@@ -20,6 +20,7 @@ const useReversePiecePosition = () => {
+         x: col.charCodeAt(0) - 'a'.charCodeAt(0),
+         y: parseInt(row, 10) - 1,
+       };
++     
+       return {
+         x: indexes.x * pieceSize,
+         y: 7 * pieceSize - indexes.y * pieceSize,
+@@ -38,6 +39,7 @@ const useReversePiecePosition = () => {
+     [pieceSize]
+   );
+ 
++  
+   return { toPosition, toTranslation };
+ };
+ 

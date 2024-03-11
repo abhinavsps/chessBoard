@@ -1,0 +1,22 @@
+/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home/bin/java \
+  --class-path \
+  /Users/apple/.gradle/caches/modules-2/files-2.1/com.google.prefab/cli/2.0.0/f2702b5ca13df54e3ca92f29d6b403fb6285d8df/cli-2.0.0-all.jar \
+  com.google.prefab.cli.AppKt \
+  --build-system \
+  cmake \
+  --platform \
+  android \
+  --abi \
+  x86 \
+  --os-version \
+  21 \
+  --stl \
+  c++_shared \
+  --ndk-version \
+  25 \
+  --output \
+  /var/folders/tn/hvvm1lcn7gx93swl1r399f3c0000gn/T/agp-prefab-staging6012949381031660729/staged-cli-output \
+  /Users/apple/.gradle/caches/transforms-3/b4db2f23f2ab214a51186ce21dfe946e/transformed/jetified-react-android-0.73.4-debug/prefab \
+  /Users/apple/.gradle/caches/transforms-3/057fda56c2cfc52d70a46042a30c6944/transformed/jetified-fbjni-0.5.1/prefab \
+  /Users/apple/.gradle/caches/transforms-3/c3bae43020d63a75df6e26cd68a87085/transformed/jetified-hermes-android-0.73.4-debug/prefab \
+  /Users/apple/Desktop/ChessBoard/android/app/build/intermediates/cxx/refs/react-native-reanimated/6t223g2o

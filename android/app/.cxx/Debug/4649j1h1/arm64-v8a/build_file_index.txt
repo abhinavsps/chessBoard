@@ -1,0 +1,2 @@
+/Users/apple/Desktop/ChessBoard/node_modules/react-native-gesture-handler/android/build/generated/source/codegen/jni/CMakeLists.txt
+/Users/apple/Desktop/ChessBoard/node_modules/react-native/ReactAndroid/cmake-utils/default-app-setup/CMakeLists.txt

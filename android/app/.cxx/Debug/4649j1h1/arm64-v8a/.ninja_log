@@ -1,0 +1,18 @@
+# ninja log v5
+2	1847	1709894279002718597	CMakeFiles/appmodules.dir/Users/apple/Desktop/ChessBoard/android/app/build/generated/rncli/src/main/jni/rncli.cpp.o	16f09e65401f37bd
+6	1138	1708321012774198201	rngesturehandler_codegen_autolinked_build/CMakeFiles/react_codegen_rngesturehandler_codegen.dir/rngesturehandler_codegen-generated.cpp.o	9e0f2ace134d3ee4
+1847	1983	1709894279141972212	/Users/apple/Desktop/ChessBoard/android/app/build/intermediates/cxx/Debug/4649j1h1/obj/arm64-v8a/libappmodules.so	3995515d3f71084a
+6	1537	1708321013173780926	rngesturehandler_codegen_autolinked_build/CMakeFiles/react_codegen_rngesturehandler_codegen.dir/react/renderer/components/rngesturehandler_codegen/Props.cpp.o	f9644d738ff9f7bb
+2	1222	1709894278385953681	CMakeFiles/appmodules.dir/OnLoad.cpp.o	24b5fe90078a97b3
+6	1185	1708321012823371917	rngesturehandler_codegen_autolinked_build/CMakeFiles/react_codegen_rngesturehandler_codegen.dir/react/renderer/components/rngesturehandler_codegen/rngesturehandler_codegenJSI-generated.cpp.o	6c790975d81ce30c
+6	1265	1708321012906758332	rngesturehandler_codegen_autolinked_build/CMakeFiles/react_codegen_rngesturehandler_codegen.dir/react/renderer/components/rngesturehandler_codegen/ShadowNodes.cpp.o	c0d3ac564c840865
+6	1008	1708321012648412975	rngesturehandler_codegen_autolinked_build/CMakeFiles/react_codegen_rngesturehandler_codegen.dir/react/renderer/components/rngesturehandler_codegen/EventEmitters.cpp.o	6286879bb278e5ae
+0	40	0	/Users/apple/Desktop/ChessBoard/android/app/.cxx/Debug/4649j1h1/arm64-v8a/CMakeFiles/cmake.verify_globs	4b7755dc86f90da1
+1537	1615	1708321013246779982	/Users/apple/Desktop/ChessBoard/android/app/build/intermediates/cxx/Debug/4649j1h1/obj/arm64-v8a/libreact_codegen_rngesturehandler_codegen.so	70abc9a744505ee3
+6	1013	1708321012654925423	rngesturehandler_codegen_autolinked_build/CMakeFiles/react_codegen_rngesturehandler_codegen.dir/react/renderer/components/rngesturehandler_codegen/States.cpp.o	ed573fc8b0c4a33b
+11	126	1709894939089551583	build.ninja	f2b804b9ef1fd138
+40	153	1709894939089551583	build.ninja	f2b804b9ef1fd138
+0	7	0	/Users/apple/Desktop/ChessBoard/android/app/.cxx/Debug/4649j1h1/arm64-v8a/CMakeFiles/cmake.verify_globs	4b7755dc86f90da1
+1	1384	1709894940482777848	CMakeFiles/appmodules.dir/OnLoad.cpp.o	24b5fe90078a97b3
+1	2021	1709894941116189658	CMakeFiles/appmodules.dir/Users/apple/Desktop/ChessBoard/android/app/build/generated/rncli/src/main/jni/rncli.cpp.o	16f09e65401f37bd
+2021	2154	1709894941248965594	/Users/apple/Desktop/ChessBoard/android/app/build/intermediates/cxx/Debug/4649j1h1/obj/arm64-v8a/libappmodules.so	3995515d3f71084a
